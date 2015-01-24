@@ -86,7 +86,7 @@ function Doc(body, metadata, variables)
   if #notes > 0 then
     --add('<ol class="footnotes">')
     for _,note in pairs(notes) do
-      add("//footnote[" .. note .. "]" )
+      add("//footnote" .. note .. "" )
     end
     --add('</ol>')
   end
@@ -174,7 +174,7 @@ end
 function Note(s)
   local num = #notes + 1
   -- add a list item with the note to the note table.
-  table.insert(notes, '[fn' .. num .. '][' .. s .. ']')
+  table.insert(notes, '[fn' .. num .. '][' .. string.gsub(s,"\n","") .. ']')
   -- return the footnote reference, linked to the note.
   return '@<fn>{fn' .. num .. '}'
 end
