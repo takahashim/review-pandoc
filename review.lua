@@ -135,7 +135,12 @@ function Strikeout(s)
 end
 
 function Link(s, src, tit)
-  return "@<href>{" .. escape_href(src) .. "," .. s .. "}"
+  --  print("LINK:" .. s .. ":" .. src .. ":" .. tit .. "\n")
+  if s == src then
+    return "@<href>{" .. escape_href(src) .. "}"
+  else
+    return "@<href>{" .. escape_href(src) .. "," .. s .. "}"
+  end
 end
 
 function Image(s, src, tit)
