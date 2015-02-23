@@ -111,7 +111,11 @@ function LineBreak()
 end
 
 function Emph(s)
-  return "@<em>{" .. escape_inline(s) .. "}"
+  if string.match(s, "@<") then
+    return s
+  else
+    return "@<em>{" .. escape_inline(s) .. "}"
+  end
 end
 
 function Strong(s)
