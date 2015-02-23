@@ -245,11 +245,11 @@ function DefinitionList(items)
   local buffer = {}
   for _,item in pairs(items) do
     for k, v in pairs(item) do
-      table.insert(buffer,"<dt>" .. k .. "</dt>\n<dd>" ..
-                     table.concat(v,"</dd>\n<dd>") .. "</dd>")
+      table.insert(buffer,": " .. k .. "\n    " ..
+                     table.concat(v,"\n    ") .. "\n")
     end
   end
-  return "<dl>\n" .. table.concat(buffer, "\n") .. "\n</dl>"
+  return "\n" .. table.concat(buffer, "") .. ""
 end
 
 -- Convert pandoc alignment to something HTML can use.
