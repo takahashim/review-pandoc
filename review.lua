@@ -216,8 +216,28 @@ function HorizontalRule()
 end
 
 function CodeBlock(s, attr)
-  return "\n#@# <code" .. attributes(attr) .. ">\n" ..
-    "//emlist{\n" .. s .. "\n//}\n"
+  if ((attr.language == "Command") or (attr.language == "command"))  then
+    return "//cmd{\n" .. s .. "\n//}\n"
+  else
+    lang = languageCode(attr.language)
+    if attr["number"] then
+      return "//emlistnum[][" .. lang .. "]{\n" .. s .. "\n//}\n"
+    else
+      return "//emlist[][" .. lang .. "]{\n" .. s .. "\n//}\n"
+    end
+  end
+end
+
+function languageCode(s)
+  if s then
+    if s == "nginx.conf" then
+      return ""
+    else
+      return string.lower(s)
+    end
+  else
+    return ""
+  end
 end
 
 function BulletList(items)
